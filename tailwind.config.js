@@ -1,0 +1,24 @@
+const defaultTheme = require('tailwindcss/defaultTheme');
+
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+    // files that will be scanned for classes that can be used in your templates
+    content: [
+        './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
+        './storage/framework/views/*.php',
+        './resources/views/**/*.blade.php',
+    ],
+    theme: {
+        extend: {
+            width: {
+                tb: '0.625px'
+            },
+            colors: {
+                twitter: '#1d9bf0',
+                lines: '#2f3336'
+            }
+        },
+    },
+
+    plugins: [],
+};
