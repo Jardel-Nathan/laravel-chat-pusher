@@ -9,7 +9,12 @@ class Messages extends Model
 {
     use HasFactory;
 
-
+    protected $fillable = [
+        'from_id',
+        'to_id',
+        'content',
+        'hash_id'
+    ];
 
 
     public function from()

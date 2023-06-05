@@ -14,7 +14,7 @@
     </div>
     <!-- end header -->
     <!-- Chatting -->
-    <div class="flex flex-row justify-between bg-white min-h-[500px]">
+    <div x-data="{ message: '' }" class="flex flex-row justify-between bg-white min-h-[500px]">
         <!-- chat list -->
         <div class="flex flex-col w-2/5 border-r-2 overflow-y-auto">
             <!-- search compt -->
@@ -52,7 +52,7 @@
         <!-- message -->
         <div class="w-full px-5 flex flex-col justify-between">
             <div class="flex flex-col-reverse mt-5 max-h-[500px] overflow-auto">
-
+                @auth
                 @foreach ($this->messages as $item)
                     {{-- if message is from user logged --}}
                     @if ($item->from->id == auth()->user()->id)
@@ -60,8 +60,7 @@
                             <div>
                                 <div
                                     class="mr-2 py-3 px-4 bg-blue-400 rounded-bl-3xl rounded-tl-3xl rounded-tr-xl text-white">
-                                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                                    Magnam, repudiandae.
+                                    {{ $item->content }}
                                 </div>
 
                             </div>
@@ -78,12 +77,12 @@
                         </div>
                     @endif
                 @endforeach
-
+                @endauth
             </div>
             <div class="py-5 flex">
-                <input class="w-full bg-gray-300 py-5 px-3 rounded-l-lg" type="text"
+                <input x-model="message" class="w-full bg-gray-300 py-5 px-3 rounded-l-lg" type="text"
                     placeholder="type your message here..." />
-                <button class="bg-cyan-800 w-32 rounded-r-lg text-white hover:bg-cyan-950"> Send > </button>
+                <button  x-on:click="$wire.sendMessage(message)" class="bg-cyan-800 w-32 rounded-r-lg text-white hover:bg-cyan-950"> Send > </button>
             </div>
         </div>
 
