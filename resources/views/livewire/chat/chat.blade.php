@@ -89,3 +89,11 @@
     </div>
 </div>
 </div>
+
+
+<script type="module">
+Echo.private(`messageschat`)
+    .listen('MessageEvent', (e) => {
+        console.log(e);
+    });
+</script>
